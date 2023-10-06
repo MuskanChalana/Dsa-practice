@@ -25,6 +25,14 @@ void InsertAtHead(Node *&head, int data)
     // delete temp;
 }
 
+void InsertAtTail(Node *&tail, int data)
+{
+    Node *temp = new Node(data);
+    tail->next = temp;
+    tail = tail->next;
+    // delete temp;
+}
+
 void print(Node *&head)
 {
     Node *temp = head;
@@ -39,7 +47,26 @@ void print(Node *&head)
 
 Node* deleteDuplicates( Node* head)
 {
-    
+    Node* temp = head;
+    int curr = temp -> data;
+    Node* del = NULL;
+
+    while(temp -> next != NULL )
+    {
+        if(curr != temp -> next -> data)
+        {
+            curr = temp -> next -> data;
+            temp = temp -> next;
+        }
+        else
+        {
+            del = temp -> next;
+            temp -> next = temp -> next -> next;
+            delete del;
+        }
+    }
+
+    return head;
 }
 
 int main()
@@ -49,20 +76,22 @@ int main()
     Node *head = node1;
     Node *tail = node1;
     
-    InsertAtHead(head, 12);
+    InsertAtTail(tail,10);
+    InsertAtTail(tail,10);
+    InsertAtTail(tail,11);
+    InsertAtTail(tail,12);
+    InsertAtTail(tail,12);
+    InsertAtTail(tail,12);
+    InsertAtTail(tail,12);
+    InsertAtTail(tail,13);
+    InsertAtTail(tail,17);
+    InsertAtTail(tail,17);
 
-    InsertAtTail(tail, 20);
-
-    InsertAtTail(tail, 30);
-
-    InsertAtPositon(head, tail, 0, 40);
-
-    InsertAtPositon(head, tail, 1, 50);
     print(head);
-
-    DeleteAtPosition(head, 0);
+    
+    head= deleteDuplicates(head);
     print(head);
+    
 
-    DeleteAllNodes(head);
     return 0;
 }
