@@ -55,9 +55,11 @@ int main()
     Node *tail2 = node2;
 
     InsertAtTail(tail1, 20);
+    InsertAtTail(tail1, 20);
+    InsertAtTail(tail1, 20);
     InsertAtTail(tail2, 30);
 
-    Node* node3 = new Node(5);
+    Node* node3 = new Node(45);
     tail1->next = node3;
     tail2->next = node3;
 
